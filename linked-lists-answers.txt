@@ -1,0 +1,127 @@
+Exercises
+For exercises requiring code, you are free to use the language of your choice.
+
+Give written answers for each question and put them in linked-lists-answers.txt:
+
+1. What are some pros and cons of using linked lists instead of arrays?
+
+A: The pros are less memory needed because each node can be placed in any available memory location and the list containing no empty place holders. The main con is there is no index so
+elements must be accessed in order which can be inefficient.
+
+2. Come up with a real world example of a linked list.
+
+A: the history section of a web browser or human memory.
+
+Programming Questions
+You may program the following questions in any language of your choice (JavaScript, Ruby, etc.).
+
+Before beginning to code, write out a plan explaining how to solve the question.
+
+1. The linked list push function should take a value, create a node, and add it to the end of a list. Below is pseudocode for a push function for a singly linked list. However, there is something wrong with it. Submit both an explanation of the bug and a functional implementation of the method.
+
+FUNCTION push(element)
+CREATE node
+SET node.value TO element
+SET node.next TO null
+
+IF the head node does not exist
+ THEN SET head to node
+ELSE
+ SET current to head
+ SET current.next to node
+END IF
+END FUNCTION
+A:
+This psuedocode is missing a while loop to iterate to the end of the list and add an element.
+
+class Node { 
+    constructor(element) 
+    { 
+        this.element = element; 
+        this.next = null
+    } 
+}  
+
+class LinkedList { 
+    constructor() 
+    { 
+        this.head = null; 
+        this.size = 0; 
+    } 
+ 
+function push(element){ 
+
+  
+    var node = new Node(element);
+    let current;
+ 
+    if (this.head == null){ 
+        this.head = node; }
+
+    else { 
+        current = this.head; }
+  
+       
+       
+        while (current.next) { 
+            current = current.next; 
+        } 
+  
+    
+    current.next = node; 
+    
+    this.size++; 
+} 
+
+2. Given an unsorted singly linked list, remove all duplicates from the linked list.
+Example
+Input: a -> c -> d -> d -> a
+Output: a -> c -> d
+
+  removeDoubles() {
+    if (!this.head || !this.head.next) {
+    console.log("there are no duplicates");
+    return;
+    }
+  let previousNode = this.head;
+  let currentNode = previousNode.next;
+  let marker;
+  let value;
+   while(previousNode) {
+     value = previousNode.value;
+     marker = previousNode;
+     currentNode = marker.next;
+   while(currentNode) {
+     if (currentNode.value == value) {
+       marker.next = currentNode.next;
+       this.size = this.size - 1;
+     } else {
+       marker = currentNode;
+      }
+      currentNode = currentNode.next;
+    }
+    previousNode = previousNode.next;
+   }
+    return;
+ }
+}
+
+3. Given an unsorted singly linked list, reverse it.
+Example
+Input: a -> b -> c -> d
+Output: d -> c -> b -> a
+
+function reverse() {
+    var previousNode = null;
+    var thisNode = this.head;
+    var nextNode;
+
+    while (thisNode) {
+      nextNode = thisNode.next;
+      thisNode.next = previousNode;
+      previousNode = thisNode;
+      thisNode = nextNode;
+    }
+
+    this.head = previousNode;
+  }
