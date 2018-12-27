@@ -34,84 +34,157 @@ END FUNCTION
 A:
 This psuedocode is missing a while loop to iterate to the end of the list and add an element.
 
-class Node { 
-    constructor(element) 
-    { 
-        this.element = element; 
-        this.next = null
-    } 
-}  
+function LinkedList(){  
+  this.head = null;
+}
 
-class LinkedList { 
-    constructor() 
-    { 
-        this.head = null; 
-        this.size = 0; 
-    } 
- 
-function push(element){ 
+LinkedList.prototype.push = function(val){
+    var node = {
+       value: val,
+       next: null
+    }
+    if(!this.head){
+      this.head = node;      
+    }
+    else{
+      current = this.head;
+      while(current.next){
+        current = current.next;
+      }
+      current.next = node;
+    }
+  }
+var list = new LinkedList();
 
-  
-    var node = new Node(element);
-    let current;
- 
-    if (this.head == null){ 
-        this.head = node; }
 
-    else { 
-        current = this.head; }
-  
-       
-       
-        while (current.next) { 
-            current = current.next; 
-        } 
-  
-    
-    current.next = node; 
-    
-    this.size++; 
-} 
+list.push(2);
+list.push(3);
+list.push(4);
+
+console.log(list)
 
 2. Given an unsorted singly linked list, remove all duplicates from the linked list.
 Example
 Input: a -> c -> d -> d -> a
 Output: a -> c -> d
 
-  removeDoubles() {
-    if (!this.head || !this.head.next) {
-    console.log("there are no duplicates");
-    return;
-    }
-  let previousNode = this.head;
-  let currentNode = previousNode.next;
-  let marker;
-  let value;
-   while(previousNode) {
-     value = previousNode.value;
-     marker = previousNode;
-     currentNode = marker.next;
-   while(currentNode) {
-     if (currentNode.value == value) {
-       marker.next = currentNode.next;
-       this.size = this.size - 1;
-     } else {
-       marker = currentNode;
-      }
-      currentNode = currentNode.next;
-    }
-    previousNode = previousNode.next;
-   }
-    return;
- }
+function LinkedList(){
+  this.head= null;
+  this.length=0;
 }
+
+LinkedList.prototype.push = function(val){  
+    var node = {
+       value: val,
+       next: null
+    }
+  
+    if(!this.head){
+      this.head = node;  
+      this.length += 1;    
+      return node;
+    }
+    else{
+      current = this.head;
+      while(current.next){
+        current = current.next;
+      }
+      current.next = node;
+      this.length += 1;
+      return node;
+    }
+  }
+
+LinkedList.prototype.duplicate = function(){
+ if (!this.head || !this.head.next) {
+      console.log("no duplicates");
+      return;
+  }
+
+    var thisNode = this.head;
+    while (thisNode != null) {
+      var previousNode = thisNode;
+      var nextNode = thisNode.next;
+      while (nextNode != null) {
+        if (thisNode.value == nextNode.value) {
+          previousNode.next = nextNode.next;
+          this.length --;
+        } else {
+          previousNode = nextNode;
+        }
+        nextNode = nextNode.next;
+      }
+      thisNode = thisNode.next;
+    }
+    return this;
+  }
+
+list = new LinkedList()
+list.push(5);
+list.push(4);
+list.push(1);
+list.push(1);
+list.duplicate()
+
+console.log(list);
+
 
 3. Given an unsorted singly linked list, reverse it.
 Example
 Input: a -> b -> c -> d
 Output: d -> c -> b -> a
 
-function reverse() {
+function LinkedList(){
+  this.head= null;
+  this.length=0;
+}
+
+LinkedList.prototype.push = function(val){  
+    var node = {
+       value: val,
+       next: null
+    }
+  
+    if(!this.head){
+      this.head = node;  
+      this.length += 1;    
+      return node;
+    }
+    else{
+      current = this.head;
+      while(current.next){
+        current = current.next;
+      }
+      current.next = node;
+      this.length += 1;
+      return node;
+    }
+  }
+
+LinkedList.prototype.duplicate = function(){
+ if (!this.head || !this.head.next) {
+      console.log("no duplicates");
+  }
+
+    var thisNode = this.head;
+    while (thisNode != null) {
+      var previousNode = thisNode;
+      var nextNode = thisNode.next;
+      while (nextNode != null) {
+        if (thisNode.value == nextNode.value) {
+          previousNode.next = nextNode.next;
+          this.length --;
+        } else {
+          previousNode = nextNode;
+        }
+        nextNode = nextNode.next;
+      }
+      thisNode = thisNode.next;
+    }
+    return this;
+  }
+
+LinkedList.prototype.reverse= function() {
     var previousNode = null;
     var thisNode = this.head;
     var nextNode;
@@ -125,3 +198,14 @@ function reverse() {
 
     this.head = previousNode;
   }
+
+
+   
+list= new LinkedList()
+list.push(5);
+list.push(3);
+list.push(1);
+list.push(4);
+list.reverse();
+
+console.log(list.head);
