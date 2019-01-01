@@ -1,0 +1,46 @@
+1. Using proper pseudo-code, describe the following primitive algorithms:
+
+*Making coffee;
+A:
+SET cofee filter
+ADD water
+FOR each cup of water
+ ADD 1 tablespoon cofee
+END FOR
+CALL cofee maker on
+
+
+*Washing dishes;
+A:
+WHILE dishes in left sink
+ CALL soap dish
+ CAll move dish to right sink
+END WHILE
+
+WHILE dishes in right sink
+ CALL rinse dish
+ CALL move dish to drying rack
+END WHILE
+
+*A choice of your own. Cleaning Kitchen
+A: 
+IF shelves are dirty
+  CALL clean shelves
+ELSE IF counter is dirty
+  CALL clean counter
+ELSE
+  CALL clean floor
+
+
+
+2. As with the knot algorithm, there may be more than one way to solve the problem. It is essential to try to pick the best algorithm for a situation. Name three companies who created an algorithm that made them successful, e.g., Google's search algorithm. It doesn't need to be a tech example (such as a recipe or manufacturing a product). Google's algorithm produces more relevant results than other search engines; what about each of your cases make them stand out?
+A:
+*Netflix's video compression algorithms make it possible to stream high quality video without much bandwith.
+
+* Auto-tune is driven by algorithms. These devices process a set of rules that slightly bends pitches, whether sung or performed by an instrument, to the nearest true semitone. Interestingly, it was developed by Exxon's Any Hildebrand who originally used the technology to interpret seismic data.
+
+*Facebook's news feed algorithm. To calculate which content is most interesting, it considers several factors, such as the number of comments, who posted the story, and what type of post it is.
+
+3. Hypothesize about what constitutes an efficient algorithm versus an inefficient algorithm.
+An efficient algorithm should accomplish it's task in the shortest time possible while using the least amount of resources.
+
