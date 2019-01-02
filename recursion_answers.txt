@@ -1,0 +1,51 @@
+1. Define and compare recursion and iteration.
+
+A: Recursion is when a statement in a function calls itself repeatedly. The iteration is when a loop repeatedly executes until the controlling condition becomes false. The primary difference between recursion and iteration is that is a recursion is a process, always applied to a function. The iteration is applied to the set of instructions which we want to get repeatedly executed.
+
+2. Name five algorithms that are commonly implemented by recursion.
+
+A: Factorial, fibonacci sequence, largest common divisor, recursive binary search, reverse a string.
+
+3. When should you use recursion, and when should you avoid recursion? Give examples for each.
+
+A: People use recursion only when it is very complex to write iterative code. For example, tree traversal techniques like preorder, postorder can be made both iterative and recursive. But usually we use recursive because of its simplicity.
+
+4. Compare the recursive and iterative solutions to the three algorithms from the checkpoint (factorial, maximum, and fibonacci). What is similar, and what is different?
+
+A: They are similar in that they all start with conditional statements called base cases that prevent an infinite recursion or loop. They are different in that one accomplishes its task by calling itself on the variables until the base cases result, and the other by iterating through the data set.
+
+5. Given a multi-dimensional collection (such as an array) where the number of dimensions is unknown, write a recursive algorithm to count the number of items in the entire collection.
+
+A:
+let array = [1,6,7];
+function countElements(array){
+  if(array.length){
+    return 1 + countElements(array.slice(1))
+  } else {
+    return 0;
+  }
+}
+
+console.log(countElements(array))
+
+6. A palindrome is a word or phrase whose spelling is the same either direction (e.g., racecar). Write a recursive algorithm to determine if a given word or phrase is a palindrome.
+A:
+var isPalindrome = function(str) {
+    var strLen = str.length;
+    if (strLen === 0 || strLen === 1) {
+        return true;
+    }
+    
+    if (str[0] === str[strLen - 1]) {
+        return isPalindrome( str.slice(1, strLen - 1) );
+    }
+    
+    return false;
+};
+
+console.log(isPalindrome('madam'));
+
+
+7. Google Easter Egg: Google the term "recursion". Google will prompt you with "Did you mean: recursion". Explain why this behavior exhibits properties of recursion.
+
+A: The word ‘recursion’ is a mathematical term that means “the application of a function to its own values to generate an infinite sequence of values.” If you were to click on Google’s suggested word each time, you would be creating an infinite loop of searches.
