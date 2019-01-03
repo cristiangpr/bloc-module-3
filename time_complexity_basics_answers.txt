@@ -24,7 +24,7 @@ Exponential Growth Rate
 
 5. Choose one of the algorithmic growth rates from the last question and make a comparison to a real-life situation.
 
-A:
+A: the number of microorganisms in a culture will increase exponentially beacause each cell splits into two
 
 
 6. Determine the time complexity of the following snippet of code. It is commonly known as a linear search.
@@ -64,13 +64,13 @@ FUNCTION fibonacci(number)
  ELSE IF number = 1 or 2 THEN           
    RETURN 1
  ELSE
-   CALL fibonacci WITH number - 2 RETURNING twoBack          1+1+1+1+1
+   CALL fibonacci WITH number - 2 RETURNING twoBack          1+1+n+n+1 = 3+2n
    CALL fibonacci WITH number - 1 RETURNING oneBack
    RETURN twoBack + oneBack
  END IF
 END FUNCTION
 
-A: (O)1
+A: (O)2^n
 
 9. Out of the code snippets you just saw, which is the most time efficient?
-A: Number 8
+A: number 6
