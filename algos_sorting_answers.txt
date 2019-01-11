@@ -42,7 +42,9 @@ END FUNCTION
 
 3. We talked about time complexity in a previous checkpoint, and how to get an idea of the efficiency of an algorithm. After looking at the pseudocode for the above sorting methods, identify why merge sort and quick sort are much more efficient than the others. Walking through each algorithm with a few sample collections may help.
 A:
-merge sort and quicksort have a best and average case time complexity  of(O)nlogn which is better than (O)n^2 average and worst case of the other sorting algorithms.
+QuickSort and mergesort are so fast compared with other sorting algorithms because they're cache-friendly. When QS or MS processes a segment of an array, it accesses elements at the beginning and end of the segment, and moves towards the center of the segment.
+So, when you start, you access the first element in the array and a piece of memory (“location”) is loaded into the cache. And when you try to access the second element, it's (most likely) already in the cache, so it's very fast.
+Other algorithms like heapsort don't work like this, they jump in the array a lot, which makes them slower.
 
 4. All of the sorts addressed in this checkpoint are known as comparison sorts. Research bucket sort and explain how it works. What is the ideal input for bucket sort?
 
