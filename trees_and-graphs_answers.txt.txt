@@ -1,0 +1,238 @@
+1. What is a binary tree and what makes it unique to other trees?
+
+A: a data structure in which a record is linked to two successor records, usually referred to as the left branch when greater and the right when less than the previous record.
+
+2. What is a heuristic?
+
+A: These are guesses that an algorithm makes to solve a complex problem sooner by sacrificing accuracy.
+
+3. What is another problem besides the shortest-path problem that requires the use of heuristics?
+
+A: Antivirus software often uses heuristic rules for detecting viruses and other forms of malware. Heuristic scanning looks for code and/or behavioral patterns common to a class or family of viruses, with different sets of rules for different viruses
+
+
+4. What is the difference between a depth-first search and a breadth-first search?
+
+A: a DFS starts at the root and explores as far as possible along each branch before backtracking. A BFS starts at the tree root and explores the neighbor nodes first, before moving to the next level neighbors.
+
+5. Explain in your own words what an undirected, a-cyclic, unweighted graph is.
+
+A: A graph in which the connection between nodes is ambiguous (not starting or ending at either node), does not form a closed loop and the cost to travel between nodes is not assigned a 'weight'.
+
+6. What kind of graph is a binary search tree?
+
+A:directed, a-cyclic, unweighted.
+
+Programming Questions
+For the following questions, describe in words how you could solve the problem and then do so. Use the depiction of the Binary Search Tree to refer to the examples.
+
+Given a Binary Search Tree and a value, write a function that checks to see whether the value exists within the tree.
+
+A:
+I would write a function that compares the value to the root node's, searching left if the value is less than and right if it is more than. If it is equal the node is returned.
+
+
+  class Node {
+    constructor (value, left, right) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+    }
+  }
+
+  class BinarySTree {
+    constructor () {
+    this.root = null;
+    }
+
+    getRoot(){
+      return this.root;
+    }
+
+    add(value) {
+        const node = this.root;
+        if (node === null) {
+          this.root = new Node(value);
+          return;
+        } else {
+          const searchTree = function(node) {
+            if (value < node.value) {
+              if (node.left === null) {
+                node.left = new Node(value);
+                return;
+              } else if (node.left !==null) {
+                return searchTree(node.left);
+              }
+              } else if (value > node.value) {
+                if (node.right === null) {
+                node.right = new Node (value);
+                return;
+              } else if (node.right !== null) {
+                return searchTree(node.right);
+              }
+            } else{
+              return null;
+            }
+          };
+          return searchTree(node);
+        }
+    }
+
+
+    find(value) {
+      let current = this.root;
+      while (current) {
+          if(value === current.value) {
+            return true;
+          } else if (value < current.value) {
+            current = current.left;
+          } else {
+            current = current.right;
+          }
+      }
+      return false;
+    }
+
+}
+var BST = new BinarySearchTree(); 
+   
+BST.insert(8); 
+BST.insert(3); 
+BST.insert(10); 
+BST.insert(1); 
+BST.insert(6); 
+BST.insert(14); 
+BST.insert(4); 
+BST.insert(7); 
+BST.insert(13); 
+ 
+
+console.log(BST.find(10));
+console.log(BST.find(23));
+
+Example: The value 10 exists in the tree. The value 23 does not exist in the tree.
+
+Given a Binary Search Tree and two nodes, n1 and n2, write a function that finds the distance between the two nodes.
+A:
+  class Node {
+    constructor (value, left, right) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+    }
+  }
+
+  class BinarySTree {
+    constructor () {
+    this.root = null;
+    }
+
+    getRoot(){
+      return this.root;
+    }
+
+    add(value) {
+        const node = this.root;
+        if (node === null) {
+          this.root = new Node(value);
+          return;
+        } else {
+          const searchTree = function(node) {
+            if (value < node.value) {
+              if (node.left === null) {
+                node.left = new Node(value);
+                return;
+              } else if (node.left !==null) {
+                return searchTree(node.left);
+              }
+              } else if (value > node.value) {
+                if (node.right === null) {
+                node.right = new Node (value);
+                return;
+              } else if (node.right !== null) {
+                return searchTree(node.right);
+              }
+            } else{
+              return null;
+            }
+          };
+          return searchTree(node);
+        }
+    }
+
+    find(value) {
+      let current = this.root;
+      while (current) {
+          if(value === current.value) {
+            return true;
+          } else if (value < current.value) {
+            current = current.left;
+          } else {
+            current = current.right;
+          }
+      }
+      return false;
+    }
+
+    findLCA(root, n1, n2){
+      let ancestor = this.root;
+      
+        while (ancestor){
+          if (n1 === ancestor.value || n2 === ancestor.value) {
+            return ancestor;
+          }  
+          
+          if ((n1 < ancestor.value && n2 > ancestor.value) || 
+            (n1 > ancestor.value && n2 < ancestor.value))
+          {
+            return ancestor;
+          }
+
+          if (n1 < ancestor.value && n2 < ancestor.value) {
+            ancestor = ancestor.left;
+          } else {
+              ancestor = ancestor.right;
+          }  
+      }
+      return ancestor;
+    }
+
+    pathLength(root, node){
+      let current = root;
+      let i = 0;
+          while (current && current.value != node) {          
+            if (node < current.value ){              
+              current = current.left;                 
+            } else {
+              current = current.right;                
+            }
+            i++;
+          }
+          return i;
+      }
+
+    findDistance(root, n1, n2) {
+      let LCA = this.findLCA(root.value, n1, n2);
+
+      let distance = this.pathLength(LCA, n1) + this.pathLength(LCA, n2);
+      return distance;
+    }
+  }
+
+  let BST = new BinarySTree();
+
+  BST.add(8);
+  BST.add(3);
+  BST.add(10);
+  BST.add(1);
+  BST.add(6);
+  BST.add(14);
+  BST.add(4);
+  BST.add(7);
+  BST.add(13);
+  
+  console.log(BST.find(13));
+  console.log(BST.find(23));
+
+console.log(BST.findDistance(8, 3, 13))
+
