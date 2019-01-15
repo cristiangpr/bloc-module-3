@@ -33,34 +33,222 @@ A: Hash table
 
 6. Build a system that allows a sales associate to enter a customer's name, address, and phone number into the system and look up customers using their phone numbers. Store this information in a hash table.
 A:
+  class HashTable {
+  constructor() {
+     this.storage = [];
+     this.maxStorage = 200;
+  }
 
-var ht = new Map();
- ht.set('5302456787', {name:'Doug', address:' 356 Parsons St.'});
- ht.set('7072235400', {name:'Bart',address:'200 Evergreen Terrace.'});
- ht.set('4156783420', {name:'Mike',address:'354 Hunt St.'});
+  hash(string, max) {
+     let hash = 0;
+    
 
-console.log(ht.get('7072235400'));
+     for (let i = 0; i < string.length; i++) {
+        hash += string.charCodeAt(i);
+     }
+     return hash % max;
+
+     
+  }
+
+     add(value) {
+     var key = value.phone;
+     var index = this.hash(key, this.maxStorage);
+     var inserted = false;
+
+     if (this.storage[index] === undefined) {
+        this.storage[index] = value;
+
+     }
+      else {
+
+       
+       for (var i = 0; i < storage[index].length; i++) {
+        if (storage[index][i][0] === key) {
+         storage[index][i][1] = value;
+         inserted = true;
+       }
+     }
+     if (inserted === false) {
+       storage[index].push([value]);
+     }
+      }
+     }
+      lookup({phone}) {
+        let key = phone;
+        let index = this.hash(key, this.maxStorage);
+
+        if(!this.storage[index]){
+            return console.log('Not found');
+        } else {
+
+        return console.log(this.storage[index]);
+
+        
+        }
+    }
+
+};
+  
+  
+
+
+
+
+var ht = new HashTable();
+ht.add({phone: '4156768909', name:'Doug', address:' 356 Parsons St.'});
+ht.add({phone: '7072234923', name:'Bart',address:'200 Evergreen Terrace.'});
+ht.add({phone: '8212323123', name:'Mike',address:'354 Hunt St.'});
+
+ht.lookup({phone: '4156768909'});
+
 
 7. Build a system that allows a store owner to track their store's inventory using a hash table for storage.
 
 A:
-var ht = new Map();
- ht.set('candy12', {item: 'gum', quantity: 26});
- ht.set('beverages55', {Item: 'beer', quantity: 51 });
- ht.set('bread12',{item: 'whole wheat', quantity: 15});
- ht.set('meat05',{item: 'NY steak', quantity: 10});
+  class HashTable {
+  constructor() {
+     this.storage = [];
+     this.maxStorage = 200;
+  }
 
-console.log(ht.get('candy12'));
-console.log(ht.get('meat05'));
+  hash(string, max) {
+     let hash = 0;
+    
+
+     for (let i = 0; i < string.length; i++) {
+        hash += string.charCodeAt(i);
+     }
+     return hash % max;
+
+     
+  }
+
+     add(value) {
+     var key = value.code;
+     var index = this.hash(key, this.maxStorage);
+     var inserted = false;
+
+     if (this.storage[index] === undefined) {
+        this.storage[index] = value;
+
+     }
+      else {
+
+    
+       for (var i = 0; i < storage[index].length; i++) {
+        if (storage[index][i][0] === key) {
+         storage[index][i][1] = value;
+         inserted = true;
+       }
+     }
+     if (inserted === false) {
+       storage[index].push([value]);
+     }
+      }
+     }
+      lookup({code}) {
+        let key = code;
+        let index = this.hash(key, this.maxStorage);
+
+        if(!this.storage[index]){
+            return console.log('Not found');
+        } else {
+
+        return console.log(this.storage[index]);
+
+        
+        }
+    }
+      
+
+}
+  
+  
 
 
+
+
+var ht = new HashTable();
+ht.add({code: 'kj154', product:'bread'});
+ht.add({code: 'pl564', product:'milk'});
+ht.add({code: 'bo156', product:'eggs'});
+
+
+ht.lookup({code: 'kj154'});
+ht.lookup({code: 'le423'});
 
 8. Build a system that allows digital copies of newspapers to be entered and searched by publisher and publication date. Use hash tables to store the necessary data.
 
-const news = new Map();
+  class HashTable {
+  constructor() {
+     this.storage = [];
+     this.maxStorage = 200;
+  }
 
- news.set('NY Times 04-12-1999', {publisher: 'NY Times', date: '04-12-1999', headline: 'We Love Ny'});
- news.set('SF Chronicle 06-10-1985', {publisher: 'SF Cronicle', date: '06-10-1985', headline: 'Rice-A-Roni is our Treat!'});
-console.log(news.get('NY Times 04-12-1999'));
-console.log(news.get('SF Chronicle 06-10-1985'))
+  hash(string, max) {
+     let hash = 0;
+    
 
+     for (let i = 0; i < string.length; i++) {
+        hash += string.charCodeAt(i);
+     }
+     return hash % max;
+
+     
+  }
+
+     add(value) {
+     var key = value.publisher + value.date;
+     var index = this.hash(key, this.maxStorage);
+     var inserted = false;
+
+     if (this.storage[index] === undefined) {
+        this.storage[index] = value;
+
+     }
+      else {
+
+    
+       for (var i = 0; i < storage[index].length; i++) {
+        if (storage[index][i][0] === key) {
+         storage[index][i][1] = value;
+         inserted = true;
+       }
+     }
+     if (inserted === false) {
+       storage[index].push([value]);
+     }
+      }
+     }
+      lookup({publisher, date}) {
+        let key = publisher + date;
+        let index = this.hash(key, this.maxStorage);
+
+        if(!this.storage[index]){
+            return console.log('Not found');
+        } else {
+
+        return console.log(this.storage[index]);
+
+        
+        }
+    }
+      
+
+}
+  
+  
+
+
+
+
+var ht = new HashTable();
+ht.add ({publisher: 'NY Times', date: '04-12-1999', headline: 'We Love Ny'});
+ht.add( {publisher: 'SF Cronicle', date: '06-10-1985', headline: 'Rice-A-Roni is our Treat!'});
+ht.add({publisher: 'Washington Post', date:'08-02-1977', headline: 'Best day Ever!'});
+
+
+ht.lookup({publisher: 'NY Times', date: '04-12-1999'});
+ht.lookup({publisher: 'SF Cronicle', date: '06-10-1985'});
+ht.lookup({publisher: 'Wall Street Journal', date: '07-12-2010'});
