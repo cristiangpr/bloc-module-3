@@ -174,7 +174,7 @@ A:
       return false;
     }
 
-    findLCA(root, n1, n2){
+    findLCA( n1, n2){
       let ancestor = this.root;
       
         while (ancestor){
@@ -211,8 +211,8 @@ A:
           return i;
       }
 
-    findDistance(root, n1, n2) {
-      let LCA = this.findLCA(root.value, n1, n2);
+    findDistance(n1, n2) {
+      let LCA = this.findLCA( n1, n2);
 
       let distance = this.pathLength(LCA, n1) + this.pathLength(LCA, n2);
       return distance;
@@ -234,5 +234,5 @@ A:
   console.log(BST.find(13));
   console.log(BST.find(23));
 
-console.log(BST.findDistance(8, 3, 13))
+console.log(BST.findDistance( 3, 13))
 
